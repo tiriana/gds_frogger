@@ -20,7 +20,7 @@ func get_tile(rowNum):
 func create_cells():
 	for rowNum in range(rowsNum - 1):
 		for colNum in range(colsNum):
-			$TileMap.set_cell(rowNum, colNum, $TileMap.tile_set.find_tile_by_name(get_tile(rowNum)));
+			$TileMap.set_cell(colNum, rowsNum - rowNum -2, $TileMap.tile_set.find_tile_by_name(get_tile(rowNum)));
 			
 func _ready():
 	create_cells()
