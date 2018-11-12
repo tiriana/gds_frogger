@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/tiles/Water.gd" type="Script" id=1]
+[ext_resource path="res://art/water.jpg" type="Texture" id=2]
+
+[node name="Water" type="Node2D"]
+
+scale = Vector2( 0.2, 0.2 )
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+isKilling = true
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+
+

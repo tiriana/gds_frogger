@@ -1,21 +1,41 @@
 extends Node2D
 
-export (int) var rowsNum = 14
-export (int) var colsNum = 24
-var rows
+export (int) var rowsNum = 12
+export (int) var colsNum = 14
+
+var rows = []
 
 export (float) var cellSize = 20.0
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+export (PackedScene) var GrassTile
+export (PackedScene) var RoadTile
+export (PackedScene) var WaterTile
+export (PackedScene) var WinTile
+
+func get_tile(rowNum):
+	if rowNum == 0:
+		return GrassTile
+	if rowNum >= rowsNum - 1:
+		return GrassTile
+	var mid = int(rowsNum / 2)
+	if rowNum == mid:
+		return GrassTile
+	if rowNum < mid:
+		return RoadTile
+	return WaterTile
+
+func create_cells():
+	for rowNum in range(rowsNum):
+		rows.append([])
+		for colNum in range(colsNum):
+			var child = get_tile(rowNum).instance()
+			rows[rowNum].append(child)
+			add_child(child)
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
+	create_cells()
+	print(rows)
 	pass
 
 #func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
 #	pass

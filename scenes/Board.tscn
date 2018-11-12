@@ -1,12 +1,14 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://scenes/Board.gd" type="Script" id=1]
+[ext_resource path="res://scenes/tiles/Grass.gd" type="Script" id=1]
 
-[node name="Board" type="Node2D" index="0"]
+[node name="Board" type="Node2D"]
 
+position = Vector2( 530.703, 377.706 )
+rotation = 1.5708
+scale = Vector2( 6.10021, 9.34347 )
 script = ExtResource( 1 )
-rowsNum = 14
-colsNum = 24
-cellSize = 20.0
+_sections_unfolded = [ "Transform" ]
+isKilling = false
 
 
