@@ -8,10 +8,10 @@
 scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-rowsNum = 12
+rowsNum = 14
 colsNum = 14
 
-[node name="TileMap" type="TileMap" parent="." index="0"]
+[node name="MainMap" type="TileMap" parent="." index="0"]
 
 mode = 0
 tile_set = ExtResource( 2 )
