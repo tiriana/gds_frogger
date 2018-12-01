@@ -1,17 +1,29 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scenes/TilesBoard.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/Frog.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Sizer.gd" type="Script" id=1]
+[ext_resource path="res://scenes/TilesBoard.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Frog.tscn" type="PackedScene" id=3]
 
 [node name="Main" type="Node" index="0"]
 
-[node name="TilesBoard" parent="." index="0" instance=ExtResource( 1 )]
+_sections_unfolded = [ "Pause" ]
+
+[node name="Sizer" type="Node2D" parent="." index="0"]
+
+position = Vector2( 195, 100 )
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TilesBoard" parent="Sizer" index="0" instance=ExtResource( 2 )]
 
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="Frog" parent="." index="1" instance=ExtResource( 2 )]
+[node name="Frog" parent="Sizer" index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 1008, 1296 )
+position = Vector2( 708.923, 886.154 )
 _sections_unfolded = [ "Transform" ]
 
 

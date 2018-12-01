@@ -5,11 +5,8 @@
 
 [node name="TilesBoard" type="Node2D"]
 
-scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-rowsNum = 14
-colsNum = 14
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
