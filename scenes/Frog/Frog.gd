@@ -75,11 +75,12 @@ func _process(delta):
 	position += velocity * delta
 
 func start(pos):
+#	$CollisionShape2D.disabled = false
 	position = pos
 	show()
-	$CollisionShape2D.disabled = false
 
 func _on_Frog_body_entered(body):
+	print(body.isKilling, body.isHome)
 	hide() # Player disappears after being hit.
 	emit_signal("hit")
-	$CollisionShape2D.disabled = true
+#	$CollisionShape2D.disabled = true

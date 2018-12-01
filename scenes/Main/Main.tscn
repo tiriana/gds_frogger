@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/Main/Main.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Board/TilesBoard.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Frog/Frog.tscn" type="PackedScene" id=3]
+
+[node name="Main" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Pause" ]
+
+[node name="Board" parent="." index="0" instance=ExtResource( 2 )]
+
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Frog" parent="." index="1" instance=ExtResource( 3 )]
+
+position = Vector2( 720, 936 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Start" type="Node2D" parent="." index="2"]
+
+position = Vector2( 792, 1008 )
+_sections_unfolded = [ "Transform" ]
+
+
