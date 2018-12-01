@@ -10,7 +10,6 @@ _sections_unfolded = [ "Pause" ]
 
 [node name="Sizer" type="Node2D" parent="." index="0"]
 
-position = Vector2( 195, 100 )
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
