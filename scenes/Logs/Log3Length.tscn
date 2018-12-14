@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/Logs/Log3Length.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Logs/LogFirst.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Logs/LogMiddle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Logs/LogEnd.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Logs/StaticBody2D.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 96, 36 )
+
+[node name="Node2D" type="Node2D"]
+
+position = Vector2( 192, 36 )
+script = ExtResource( 1 )
+speed = 0
+
+[node name="First" parent="." index="0" instance=ExtResource( 2 )]
+
+position = Vector2( -12, 0 )
+
+[node name="Middle" parent="." index="1" instance=ExtResource( 3 )]
+
+position = Vector2( -84, 0 )
+
+[node name="End" parent="." index="2" instance=ExtResource( 4 )]
+
+position = Vector2( -156, 0 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="3"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script = ExtResource( 5 )
+speed = 0
+isCarring = true
+isKilling = false
+isHome = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+
+position = Vector2( -84, 0 )
+shape = SubResource( 1 )
+
+

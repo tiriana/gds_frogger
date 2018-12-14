@@ -1,1 +1,3 @@
-extends "res://scenes/Board/Terrian.gd"
+extends "res://scenes/Terrian.gd"
+
+export (int) var number; 

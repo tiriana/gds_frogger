@@ -1,9 +1,11 @@
 extends Node2D
-signal hit
-signal drown
+signal died
+signal won
 
 export (int) var speed  # How fast the player will move (pixels/sec).
 var velocity = Vector2()
+
+var theLog; 
 
 var directions = {
 	"up": {
@@ -37,6 +39,7 @@ var current_direction = {
 		"velocity": Vector2(0, 0),
 		"rotation": 0
 	}
+	
 
 func _ready():
 	pass
@@ -51,8 +54,8 @@ func _find_highest_direction():
 		if direction["priority"] > highest["priority"]:
 			highest = direction
 	return highest
-
-func _process(delta):
+	
+func move(delta):
 	for direction in directions.values():
 		if Input.is_action_just_released(direction["ui"]):
 			direction["priority"] = 0;
@@ -71,16 +74,94 @@ func _process(delta):
 		$AnimatedSprite.play()
 	else:
         $AnimatedSprite.stop()
-
 	position += velocity * delta
+	
+	if theLog:
+		position += Vector2(1, 0) * theLog.speed * delta
+
+var timeInDanger
+var carringSpeed
+var timeAtHome
+
+var collidesWithDanger
+var isCarriedByLog
+var isAtHome
+
+func printState():
+	print("timeInDanger ", timeInDanger)
+	print("timeAtHome ", timeAtHome)
+	print("collidesWithDanger ", collidesWithDanger)
+	print("isAtHome ", isAtHome)
+
+func updateState(delta):
+#	printState()
+	if collidesWithDanger:
+		timeInDanger += delta
+	else:
+		timeInDanger = 0
+		
+	if isCarriedByLog:
+		timeInDanger = 0
+	
+	if isAtHome:
+		timeAtHome += delta
+	else:
+		timeAtHome = 0
+
+func emit_signals_if_needed():
+	if timeInDanger > 0.1:
+		return die()
+	
+	if timeAtHome > 0.1:
+		return win()
+
+func die():
+	hide() # Player disappears after being hit.
+	emit_signal("died")
+
+func win():
+	hide() # Player disappears after being hit.
+	emit_signal("won")
+
+var frame = 0;
+
+func _process(delta):
+	frame+=1
+	if (frame % 10 == 0):
+		print("collidesWithDanger " + String(collidesWithDanger) + ", isCarriedByLog " + String(isCarriedByLog) + ", isAtHome " + String(isAtHome))
+	move(delta)
+	updateState(delta)
+	emit_signals_if_needed()
+	print()
 
 func start(pos):
 #	$CollisionShape2D.disabled = false
 	position = pos
+	timeInDanger = 0
+	carringSpeed = 0
+	timeAtHome = 0
+	collidesWithDanger = false
+	isCarriedByLog = false
+	isAtHome = false
 	show()
 
 func _on_Frog_body_entered(body):
-	print(body.isKilling, body.isHome)
-	hide() # Player disappears after being hit.
-	emit_signal("hit")
+	if body.isCarring:
+		theLog = body;
+	collidesWithDanger = body.isKilling
+	isCarriedByLog = body.isCarring
+	isAtHome = body.isHome
 #	$CollisionShape2D.disabled = true
+
+func _on_Frog_body_exited(body):
+	if body.isKilling:
+		collidesWithDanger = false
+	
+	if body.isCarring:
+		isCarriedByLog = false
+		if theLog == body:
+			theLog = $_NULL
+	
+	if body.isHome:
+		isAtHome = false
+
