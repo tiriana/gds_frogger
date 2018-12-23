@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Frog/Frog.gd" type="Script" id=1]
-[ext_resource path="res://art/green.svg" type="Texture" id=2]
+[ext_resource path="res://art/zaba prototyp.png" type="Texture" id=2]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -12,12 +12,12 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-points = PoolVector2Array( 0, -10, 8.66025, 5, -8.66025, 5 )
+extents = Vector2( 5.5525, 4.04588 )
 
-[node name="Frog" type="Area2D" index="0"]
+[node name="Frog" type="Area2D"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -36,8 +36,8 @@ animation = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-position = Vector2( -0.229526, 5.00391 )
-scale = Vector2( 1.8717, 2.05307 )
+position = Vector2( 0, 12 )
+scale = Vector2( 5.40297, 4.44898 )
 shape = SubResource( 2 )
 
 [node name="DebugTimer" type="Timer" parent="." index="2"]

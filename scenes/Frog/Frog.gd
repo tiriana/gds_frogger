@@ -9,10 +9,9 @@ var timeInDanger
 var timeAtHome
 
 var collidesWithDanger
-var isCarried
 var isAtHome
 
-var carrier
+var carriers = []
 
 var directions = {
 	"up": {
@@ -82,11 +81,11 @@ func move(delta):
         $AnimatedSprite.stop()
 	position += velocity * delta
 	
-	if carrier:
-		position += Vector2(1, 0) * carrier.speedModifier * delta
+	if carriers.size() > 0:
+		position += Vector2(1, 0) * carriers[0].speedModifier * delta
 
 func printState():
-	print("isCarried ", isCarried, " collidesWithDanger ", collidesWithDanger)
+	print("carriers ", carriers.size(), " collidesWithDanger ", collidesWithDanger)
 	print(" ")
 
 func updateState(delta):
@@ -95,7 +94,7 @@ func updateState(delta):
 	else:
 		timeInDanger = 0
 	
-	if isCarried:
+	if carriers.size() > 0:
 		timeInDanger = 0
 	
 	if isAtHome:
@@ -118,8 +117,6 @@ func win():
 	hide() 
 	emit_signal("won")
 
-
-
 func _process(delta):
 	move(delta)
 	updateState(delta)
@@ -131,7 +128,6 @@ func start(pos):
 	timeAtHome = 0
 	collidesWithDanger = false
 	isAtHome = false
-	isCarried = false
 	show()
 
 func _on_Frog_body_entered(body):
@@ -140,8 +136,7 @@ func _on_Frog_body_entered(body):
 	
 	
 	if body.isSafe:
-		carrier = body;
-		isCarried = true
+		carriers.push_front(body);
 	
 	if body.isDanger:
 		collidesWithDanger = true
@@ -160,9 +155,7 @@ func _on_Frog_body_exited(body):
 		collidesWithDanger = false
 #
 	if body.isSafe:
-		isCarried = false
-		if carrier == body:
-			carrier = $_NULL
+		carriers.remove(carriers.find(body));
 #
 	if body.isHome:
 		isAtHome = false
