@@ -5,7 +5,14 @@ signal won
 export (int) var speed  # How fast the player will move (pixels/sec).
 var velocity = Vector2()
 
-var theLog; 
+var timeInDanger
+var timeAtHome
+
+var collidesWithDanger
+var isCarried
+var isAtHome
+
+var carrier
 
 var directions = {
 	"up": {
@@ -40,7 +47,6 @@ var current_direction = {
 		"rotation": 0
 	}
 	
-
 func _ready():
 	pass
 	
@@ -76,31 +82,20 @@ func move(delta):
         $AnimatedSprite.stop()
 	position += velocity * delta
 	
-	if theLog:
-		position += Vector2(1, 0) * theLog.speed * delta
-
-var timeInDanger
-var carringSpeed
-var timeAtHome
-
-var collidesWithDanger
-var isCarriedByLog
-var isAtHome
+	if carrier:
+		position += Vector2(1, 0) * carrier.speedModifier * delta
 
 func printState():
-	print("timeInDanger ", timeInDanger)
-	print("timeAtHome ", timeAtHome)
-	print("collidesWithDanger ", collidesWithDanger)
-	print("isAtHome ", isAtHome)
+	print("timeInDanger ", timeInDanger, "timeAtHome ", timeAtHome, "collidesWithDanger ", collidesWithDanger)
+	print(" ")
 
 func updateState(delta):
-#	printState()
 	if collidesWithDanger:
 		timeInDanger += delta
 	else:
 		timeInDanger = 0
-		
-	if isCarriedByLog:
+	
+	if isCarried:
 		timeInDanger = 0
 	
 	if isAtHome:
@@ -116,52 +111,51 @@ func emit_signals_if_needed():
 		return win()
 
 func die():
-	hide() # Player disappears after being hit.
+	hide()
 	emit_signal("died")
 
 func win():
-	hide() # Player disappears after being hit.
+	hide() 
 	emit_signal("won")
 
-var frame = 0;
+
 
 func _process(delta):
-	frame+=1
-	if (frame % 10 == 0):
-		print("collidesWithDanger " + String(collidesWithDanger) + ", isCarriedByLog " + String(isCarriedByLog) + ", isAtHome " + String(isAtHome))
 	move(delta)
 	updateState(delta)
 	emit_signals_if_needed()
-	print()
 
 func start(pos):
-#	$CollisionShape2D.disabled = false
 	position = pos
 	timeInDanger = 0
-	carringSpeed = 0
 	timeAtHome = 0
 	collidesWithDanger = false
-	isCarriedByLog = false
 	isAtHome = false
+	isCarried = false
 	show()
 
 func _on_Frog_body_entered(body):
-	if body.isCarring:
-		theLog = body;
-	collidesWithDanger = body.isKilling
-	isCarriedByLog = body.isCarring
+	print("entered body ", body.isSafe, body.isDanger, body.isHome, body.speedModifier)
+	
+	if body.isSafe:
+		carrier = body;
+	collidesWithDanger = body.isDanger
+	isCarried = body.isSafe
 	isAtHome = body.isHome
-#	$CollisionShape2D.disabled = true
 
 func _on_Frog_body_exited(body):
-	if body.isKilling:
+	print("exited body ", body.isSafe, body.isDanger, body.isHome, body.speedModifier)
+	if body.isDanger:
 		collidesWithDanger = false
-	
-	if body.isCarring:
-		isCarriedByLog = false
-		if theLog == body:
-			theLog = $_NULL
-	
+#
+	if body.isSafe:
+		isCarried = false
+		if carrier == body:
+			carrier = $_NULL
+#
 	if body.isHome:
 		isAtHome = false
 
+func _on_DebugTimer_timeout():
+#	printState()
+	pass

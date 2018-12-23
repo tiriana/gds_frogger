@@ -1,5 +1,6 @@
-extends TileMap
+extends Node2D
 
-export (bool) var isKilling = false
+export (bool) var isSafe = false
+export (bool) var isDanger = false
 export (bool) var isHome = false
-export (bool) var isCarring = false
+export (int) var speedModifier = 0

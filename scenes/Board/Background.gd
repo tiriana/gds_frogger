@@ -1,1 +1,0 @@
-extends "res://scenes/Terrian.gd"

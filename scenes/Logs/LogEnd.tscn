@@ -13,13 +13,15 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Node2D" type="Node2D"]
+[node name="LogEnd" type="Node2D"]
+
+_sections_unfolded = [ "Transform" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
 frames = SubResource( 1 )
 animation = "default"
-frame = 2
 playing = true
+_sections_unfolded = [ "Transform" ]
 
 
