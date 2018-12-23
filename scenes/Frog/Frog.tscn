@@ -15,7 +15,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 5.5525, 4.04588 )
+extents = Vector2( 2.221, 4.04587 )
 
 [node name="Frog" type="Area2D"]
 
@@ -36,7 +36,7 @@ animation = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-position = Vector2( 0, 12 )
+position = Vector2( 0, 6 )
 scale = Vector2( 5.40297, 4.44898 )
 shape = SubResource( 2 )
 

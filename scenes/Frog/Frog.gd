@@ -136,7 +136,10 @@ func _on_Frog_body_entered(body):
 	
 	
 	if body.isSafe:
-		carriers.push_front(body);
+		if velocity.length() > 0:
+			carriers.push_front(body)
+		else:
+			carriers.push_back(body)
 	
 	if body.isDanger:
 		collidesWithDanger = true
