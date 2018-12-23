@@ -103,10 +103,10 @@ func updateState(delta):
 		timeAtHome = 0
 
 func emit_signals_if_needed():
-	if timeInDanger > 0.1:
+	if timeInDanger > 0.05:
 		return die()
 	
-	if timeAtHome > 0.1:
+	if timeAtHome > 0.05:
 		return win()
 
 func die():
