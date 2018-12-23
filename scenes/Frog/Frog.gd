@@ -86,7 +86,7 @@ func move(delta):
 		position += Vector2(1, 0) * carrier.speedModifier * delta
 
 func printState():
-	print("timeInDanger ", timeInDanger, "timeAtHome ", timeAtHome, "collidesWithDanger ", collidesWithDanger)
+	print("isCarried ", isCarried, " collidesWithDanger ", collidesWithDanger)
 	print(" ")
 
 func updateState(delta):
@@ -135,16 +135,27 @@ func start(pos):
 	show()
 
 func _on_Frog_body_entered(body):
-	print("entered body ", body.isSafe, body.isDanger, body.isHome, body.speedModifier)
+#	print("ENTER body. Safe: ", body.isSafe, " Danger: ", body.isDanger)
+	print("ENTER body ", body.bodyName)
+	
 	
 	if body.isSafe:
 		carrier = body;
-	collidesWithDanger = body.isDanger
-	isCarried = body.isSafe
-	isAtHome = body.isHome
+		isCarried = true
+	
+	if body.isDanger:
+		collidesWithDanger = true
+	
+	if body.isHome:
+		isAtHome = true
+		
+	printState();
 
 func _on_Frog_body_exited(body):
-	print("exited body ", body.isSafe, body.isDanger, body.isHome, body.speedModifier)
+#	print("EXIT body. Safe: ", body.isSafe, " Danger: ", body.isDanger)
+	print("EXIT body ", body.bodyName)
+	
+	
 	if body.isDanger:
 		collidesWithDanger = false
 #
@@ -155,6 +166,8 @@ func _on_Frog_body_exited(body):
 #
 	if body.isHome:
 		isAtHome = false
+		
+	printState();
 
 func _on_DebugTimer_timeout():
 #	printState()

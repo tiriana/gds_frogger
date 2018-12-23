@@ -13,8 +13,8 @@ extents = Vector2( 96, 36 )
 
 [node name="Log3" type="Node2D"]
 
-position = Vector2( 192, 36 )
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 speed = 0
 
 [node name="First" parent="." index="0" instance=ExtResource( 2 )]
@@ -41,14 +41,17 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 script = ExtResource( 5 )
+_sections_unfolded = [ "Collision", "Pickable", "Transform", "Visibility", "Z Index" ]
 isSafe = true
 isDanger = false
 isHome = false
 speedModifier = 0
+bodyName = "Log 3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
 
 position = Vector2( -84, 0 )
 shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 

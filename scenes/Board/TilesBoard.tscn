@@ -32,6 +32,7 @@ isSafe = true
 isDanger = false
 isHome = false
 speedModifier = 0
+bodyName = "backround"
 
 [node name="KillingGrass" type="TileMap" parent="." index="1"]
 
@@ -58,6 +59,7 @@ isSafe = false
 isDanger = true
 isHome = false
 speedModifier = 0
+bodyName = "Killing grass"
 
 [node name="Water" type="TileMap" parent="." index="2"]
 
@@ -84,5 +86,6 @@ isSafe = false
 isDanger = true
 isHome = false
 speedModifier = 0
+bodyName = "Water"
 
 
