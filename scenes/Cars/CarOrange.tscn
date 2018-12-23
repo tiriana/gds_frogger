@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/Cars/CarOrange.gd" type="Script" id=1]
+[ext_resource path="res://art/cars/AUTO1.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Terrian.gd" type="Script" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 34, 16 )
+
+[node name="CarOrange" type="Node2D"]
+
+scale = Vector2( 2, 2 )
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+speed = 0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+
+frames = SubResource( 1 )
+animation = "default"
+_sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="1"]
+
+rotation = -3.14159
+scale = Vector2( 1, -1 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script = ExtResource( 3 )
+isSafe = false
+isDanger = true
+isHome = false
+speedModifier = 0
+bodyName = "Orange car"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+
+position = Vector2( 0.499996, 0 )
+scale = Vector2( 0.986486, 1 )
+shape = SubResource( 2 )
+
+
