@@ -8,10 +8,11 @@ var velocity = Vector2()
 var timeInDanger
 var timeAtHome
 
-var collidesWithDanger
 var isAtHome
 
 var carriers = []
+var danger = []
+var lastHome;
 
 var directions = {
 	"up": {
@@ -85,11 +86,11 @@ func move(delta):
 		position += Vector2(1, 0) * carriers[0].speedModifier * delta
 
 func printState():
-	print("carriers ", carriers.size(), " collidesWithDanger ", collidesWithDanger)
+	print("carriers ", carriers.size(), " danger ", danger.size())
 	print(" ")
 
 func updateState(delta):
-	if collidesWithDanger:
+	if danger.size() > 0:
 		timeInDanger += delta
 	else:
 		timeInDanger = 0
@@ -115,6 +116,7 @@ func die():
 
 func win():
 	hide() 
+	lastHome.markAsFull()
 	emit_signal("won")
 
 func _process(delta):
@@ -126,45 +128,45 @@ func start(pos):
 	position = pos
 	timeInDanger = 0
 	timeAtHome = 0
-	collidesWithDanger = false
+	danger = []
+	carriers = []
 	isAtHome = false
+	rotation = 0
 	show()
+	$CollisionShape2D.disabled = false
 
 func _on_Frog_body_entered(body):
-#	print("ENTER body. Safe: ", body.isSafe, " Danger: ", body.isDanger)
-	print("ENTER body ", body.bodyName)
-	
-	
-	if body.isSafe:
+	if body.isCarrying and !carriers.has(body):
 		if velocity.length() > 0:
 			carriers.push_front(body)
 		else:
 			carriers.push_back(body)
 	
 	if body.isDanger:
-		collidesWithDanger = true
+		danger.push_back(body)
 	
 	if body.isHome:
 		isAtHome = true
+		lastHome = body.get_node("../");
 		
-	printState();
+	print('Entered ', body.bodyName, " ", carriers.size());
+	printState()
+		
+#	for item in carriers:
+#		print("Carier: ", item.get_node("../").name);
 
 func _on_Frog_body_exited(body):
-#	print("EXIT body. Safe: ", body.isSafe, " Danger: ", body.isDanger)
-	print("EXIT body ", body.bodyName)
-	
-	
 	if body.isDanger:
-		collidesWithDanger = false
-#
-	if body.isSafe:
-		carriers.remove(carriers.find(body));
+		while(danger.has(body)):
+			danger.remove(danger.find(body));
+		
+	if body.isCarrying:
+		while(carriers.has(body)):
+			carriers.remove(carriers.find(body));
 #
 	if body.isHome:
 		isAtHome = false
 		
-	printState();
+	print('Exited ', body.bodyName, " ", carriers.size());
+	printState()
 
-func _on_DebugTimer_timeout():
-#	printState()
-	pass
