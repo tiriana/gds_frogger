@@ -148,12 +148,6 @@ func _on_Frog_body_entered(body):
 	if body.isHome:
 		isAtHome = true
 		lastHome = body.get_node("../");
-		
-	print('Entered ', body.bodyName, " ", carriers.size());
-	printState()
-		
-#	for item in carriers:
-#		print("Carier: ", item.get_node("../").name);
 
 func _on_Frog_body_exited(body):
 	if body.isDanger:
@@ -166,7 +160,4 @@ func _on_Frog_body_exited(body):
 #
 	if body.isHome:
 		isAtHome = false
-		
-	print('Exited ', body.bodyName, " ", carriers.size());
-	printState()
 

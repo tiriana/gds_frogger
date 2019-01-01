@@ -1,12 +1,14 @@
 extends Node2D
 
 var isFull = false;
+signal filled
 
 func markAsFull():
 	isFull = true;
 	$Frog.visible = true;
 	$StaticBody2D.isDanger = true
 	$StaticBody2D.isHome = false
+	emit_signal("filled")
 	
 func _ready():
 	# Called when the node is added to the scene for the first time.
