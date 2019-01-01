@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/UI/GameOver.gd" type="Script" id=1]
+[ext_resource path="res://art/ui/darken.png" type="Texture" id=2]
+[ext_resource path="res://scenes/UI/Label.tscn" type="PackedScene" id=3]
+
+[node name="GameOver" type="Node2D"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+position = Vector2( 1000, 500 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Label" parent="." index="1" instance=ExtResource( 3 )]
+
+position = Vector2( 576, 504 )
+scale = Vector2( 10, 10 )
+
+

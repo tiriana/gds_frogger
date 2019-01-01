@@ -5,6 +5,8 @@ signal won
 export (int) var speed  # How fast the player will move (pixels/sec).
 var velocity = Vector2()
 
+var leftTop
+var bottomRight
 var timeInDanger
 var timeAtHome
 
@@ -85,6 +87,15 @@ func move(delta):
 	if carriers.size() > 0:
 		position += Vector2(1, 0) * carriers[0].speedModifier * delta
 
+func setBoundries(_leftTop, _bottomRight):
+	leftTop = _leftTop
+	bottomRight = _bottomRight
+	
+func clampFrog():
+	return
+	position.x = clamp(position.x, leftTop.position.x + 36, bottomRight.position.x - 36)
+	position.y = clamp(position.y, leftTop.position.y + 36, bottomRight.position.y - 36)
+
 func printState():
 	print("carriers ", carriers.size(), " danger ", danger.size())
 	print(" ")
@@ -111,6 +122,7 @@ func emit_signals_if_needed():
 		return win()
 
 func die():
+	print("frog dies")
 	hide()
 	emit_signal("died")
 
@@ -123,6 +135,7 @@ func _process(delta):
 	move(delta)
 	updateState(delta)
 	emit_signals_if_needed()
+	clampFrog()
 
 func start(pos):
 	position = pos

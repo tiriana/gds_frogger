@@ -8,6 +8,8 @@ export (Array) var LevelScenes = []
 export (int) var lives = 5
 export (int) var secondsLeft = 300
 
+var score = 0;
+
 var currentLevelNumber = 0
 var currentLevel
 
@@ -21,17 +23,23 @@ func _updateSize():
 	scale.x = _scale
 	scale.y = _scale
 
-func _startFrog():
+func _spawnFrog():
+	if (!get_node("Frog")):
+		return
+	print ("spawning frog");
+	$Frog.setBoundries($LeftTop, $BottomRight)
 	$Frog.start($Start.position)
 
 func _ready():
 	_updateSize()
-	_startFrog()
+	_spawnFrog()
 	
 	$Frog.connect("died", self, "_on_frog_died")
 	$Frog.connect("won", self, "_on_frog_won")
 	
-	startLevel(0);
+	startLevel(0)
+	setLives(lives)
+	getTimer().start();
 	
 func startLevel(levelNumber):
 	if (currentLevelNumber >= LevelScenes.size()):
@@ -42,7 +50,10 @@ func startLevel(levelNumber):
 	currentLevel = level;
 	add_child(level)
 	
+	_on_score_change(100);
+	
 	level.connect("finished", self, "_on_level_finished");
+	level.connect("score_change", self, "_on_score_change");
 	
 func goToNextLevel():
 	if (currentLevelNumber == LevelScenes.size() - 1):
@@ -50,25 +61,41 @@ func goToNextLevel():
 		return;
 	startLevel(currentLevelNumber + 1);
 	
+func getTimer():
+	return get_node("UI/RightPanel/Timer")
+
 func goToWinScene():
+	get_node("UI/WinScene").show()
 	print("THIS IS WIN SCENE")
+	getTimer().stop()
+	remove_child($Frog);
 	
 func goToGameOver():
+	get_node("UI/GameOver").show()
 	print("THIS IS GAME OVER SCENE")
+	getTimer().stop()
+	remove_child($Frog)
+	
+func _on_score_change(score_diff):
+	score += score_diff;
+	get_node("UI/RightPanel/Score").setScore(score)
 	
 func _on_level_finished():
 	goToNextLevel();
+	
+func setLives(_lives):
+	lives = _lives
+	get_node("UI/RightPanel/Lives").setLives(lives)
 
 func _on_frog_died():
-	_startFrog()
+	setLives(lives - 1)
+	if (lives <= 0):
+		goToGameOver();
+	else:
+		_spawnFrog()
 	
 func _on_frog_won():
-	_startFrog()
-
-func clampFrog():
-	$Frog.position.x = clamp($Frog.position.x, $LeftTop.position.x + 36, $BottomRight.position.x - 36)
-	$Frog.position.y = clamp($Frog.position.y, $LeftTop.position.y + 36, $BottomRight.position.y - 36)
+	_spawnFrog()
 
 func _process(delta):
-	clampFrog();
 	pass
