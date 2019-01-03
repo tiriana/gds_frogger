@@ -5,7 +5,8 @@ var width = 1920
 var height = 1080
 
 export (Array) var LevelScenes = []
-export (int) var lives = 5
+export (int) var totalLives = 5
+var lives
 export (int) var secondsLeft = 300
 
 var score = 0;
@@ -32,14 +33,39 @@ func _spawnFrog():
 
 func _ready():
 	_updateSize()
-	_spawnFrog()
 	
 	$Frog.connect("died", self, "_on_frog_died")
 	$Frog.connect("won", self, "_on_frog_won")
 	
 	startLevel(0)
-	setLives(lives)
+	prepareGame();
+	$Frog.isInteractive = false
+	
+	get_node("UI/MainMenu").connect("start", self, "startGame")
+	get_node("UI/GameOver").connect("try_again", self, "restartGame")
+
+func reset():
+	pass
+
+func restartGame():
+	reset()
+	prepareGame()
+	startGame()
+
+func prepareGame():
+	$Frog.isInteractive = true
+	$Frog.visible = true
+	setLives(totalLives)
+	_spawnFrog()
+	$Frog.reset();
+
+func startGame():
 	getTimer().start();
+	startLevel(1);
+	$Frog.isInteractive = true;
+	get_node("UI/MainMenu").visible = false;
+	get_node("UI/GameOver").visible = false;
+	get_node("UI/WinScene").visible = false;
 	
 func startLevel(levelNumber):
 	if (currentLevelNumber >= LevelScenes.size()):
@@ -50,8 +76,6 @@ func startLevel(levelNumber):
 	currentLevel = level;
 	add_child(level)
 	
-	_on_score_change(100);
-	
 	level.connect("finished", self, "_on_level_finished");
 	level.connect("score_change", self, "_on_score_change");
 	
@@ -59,6 +83,7 @@ func goToNextLevel():
 	if (currentLevelNumber == LevelScenes.size() - 1):
 		goToWinScene()
 		return;
+	_on_score_change(100);
 	startLevel(currentLevelNumber + 1);
 	
 func getTimer():
@@ -68,13 +93,15 @@ func goToWinScene():
 	get_node("UI/WinScene").show()
 	print("THIS IS WIN SCENE")
 	getTimer().stop()
-	remove_child($Frog);
+	$Frog.isInteractive = false
+	$Frog.visible = false
 	
 func goToGameOver():
 	get_node("UI/GameOver").show()
 	print("THIS IS GAME OVER SCENE")
 	getTimer().stop()
-	remove_child($Frog)
+	$Frog.isInteractive = false
+	$Frog.visible = false
 	
 func _on_score_change(score_diff):
 	score += score_diff;
@@ -84,7 +111,7 @@ func _on_level_finished():
 	goToNextLevel();
 	
 func setLives(_lives):
-	lives = _lives
+	lives = max(_lives, 0)
 	get_node("UI/RightPanel/Lives").setLives(lives)
 
 func _on_frog_died():

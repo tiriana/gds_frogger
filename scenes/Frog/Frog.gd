@@ -4,6 +4,7 @@ signal won
 
 export (int) var speed  # How fast the player will move (pixels/sec).
 var velocity = Vector2()
+var isInteractive = false
 
 var leftTop
 var bottomRight
@@ -63,26 +64,29 @@ func _find_highest_direction():
 			highest = direction
 	return highest
 	
+	
 func move(delta):
-	for direction in directions.values():
-		if Input.is_action_just_released(direction["ui"]):
-			direction["priority"] = 0;
-			current_direction = _find_highest_direction()
-			highest_priority = current_direction["priority"]
-		if Input.is_action_just_pressed(direction["ui"]):
-			highest_priority += 1
-			direction["priority"] = highest_priority
-			current_direction = direction
-			
-	velocity = current_direction["velocity"]
-	rotation = current_direction["rotation"]
-
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
-		$AnimatedSprite.play()
-	else:
-        $AnimatedSprite.stop()
-	position += velocity * delta
+	if isInteractive:
+		
+		for direction in directions.values():
+			if Input.is_action_just_released(direction["ui"]):
+				direction["priority"] = 0;
+				current_direction = _find_highest_direction()
+				highest_priority = current_direction["priority"]
+			if Input.is_action_just_pressed(direction["ui"]):
+				highest_priority += 1
+				direction["priority"] = highest_priority
+				current_direction = direction
+				
+		velocity = current_direction["velocity"]
+		rotation = current_direction["rotation"]
+	
+		if velocity.length() > 0:
+			velocity = velocity.normalized() * speed
+			$AnimatedSprite.play()
+		else:
+			$AnimatedSprite.stop()
+		position += velocity * delta
 	
 	if carriers.size() > 0:
 		position += Vector2(1, 0) * carriers[0].speedModifier * delta
@@ -92,7 +96,6 @@ func setBoundries(_leftTop, _bottomRight):
 	bottomRight = _bottomRight
 	
 func clampFrog():
-	return
 	position.x = clamp(position.x, leftTop.position.x + 36, bottomRight.position.x - 36)
 	position.y = clamp(position.y, leftTop.position.y + 36, bottomRight.position.y - 36)
 
@@ -136,6 +139,14 @@ func _process(delta):
 	updateState(delta)
 	emit_signals_if_needed()
 	clampFrog()
+	
+func reset():
+	highest_priority = 0
+	current_direction = {
+		"velocity": Vector2(0, 0),
+		"rotation": 0
+	}
+	velocity = Vector2()
 
 func start(pos):
 	position = pos
