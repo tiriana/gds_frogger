@@ -1,0 +1,104 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://scenes/Animals/Crock.gd" type="Script" id=1]
+[ext_resource path="res://art/crocodile/crocodile_01.png" type="Texture" id=2]
+[ext_resource path="res://art/crocodile/crocodile_02.png" type="Texture" id=3]
+[ext_resource path="res://art/crocodile/crocodile_03.png" type="Texture" id=4]
+[ext_resource path="res://art/crocodile/crocodile_04.png" type="Texture" id=5]
+[ext_resource path="res://art/crocodile/crocodile_05.png" type="Texture" id=6]
+[ext_resource path="res://art/crocodile/crocodile_06.png" type="Texture" id=7]
+[ext_resource path="res://art/crocodile/crocodile_07.png" type="Texture" id=8]
+[ext_resource path="res://art/crocodile/crocodile_08.png" type="Texture" id=9]
+[ext_resource path="res://art/crocodile/crocodile_09.png" type="Texture" id=10]
+[ext_resource path="res://scenes/Terrian.gd" type="Script" id=11]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "swim",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "eating",
+"speed": 10.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 34.8857
+height = 0.0
+
+[node name="Crock" type="Node2D"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+speed = -1
+eatingProbability = 0.0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+
+frames = SubResource( 1 )
+animation = "swim"
+playing = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="1"]
+
+editor/display_folded = true
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script = ExtResource( 11 )
+isCarrying = true
+isDanger = false
+isLethal = false
+isHome = false
+speedModifier = 0
+bodyName = ""
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+
+position = Vector2( 3, 0 )
+scale = Vector2( 3, 1 )
+shape = SubResource( 2 )
+
+[node name="KillingBody" type="StaticBody2D" parent="." index="2"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script = ExtResource( 11 )
+isCarrying = true
+isDanger = true
+isLethal = true
+isHome = false
+speedModifier = 0
+bodyName = ""
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillingBody" index="0"]
+
+position = Vector2( 74, 9.53674e-007 )
+scale = Vector2( 0.897436, 0.686274 )
+shape = SubResource( 2 )
+
+[node name="StatusChangeTimer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = false
+autostart = true
+
+[connection signal="timeout" from="StatusChangeTimer" to="." method="_on_StatusChangeTimer_timeout"]
+
+

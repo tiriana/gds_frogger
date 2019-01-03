@@ -32,6 +32,7 @@ func _spawnFrog():
 	$Frog.start($Start.position)
 
 func _ready():
+	randomize();
 	_updateSize()
 	
 	$Frog.connect("died", self, "_on_frog_died")
@@ -43,6 +44,7 @@ func _ready():
 	
 	get_node("UI/MainMenu").connect("start", self, "startGame")
 	get_node("UI/GameOver").connect("try_again", self, "restartGame")
+	get_node("UI/WinScene").connect("play_again", self, "restartGame")
 
 func reset():
 	pass
@@ -56,6 +58,7 @@ func prepareGame():
 	$Frog.isInteractive = true
 	$Frog.visible = true
 	setLives(totalLives)
+	setScore(0);
 	_spawnFrog()
 	$Frog.reset();
 
@@ -104,9 +107,12 @@ func goToGameOver():
 	$Frog.visible = false
 	
 func _on_score_change(score_diff):
-	score += score_diff;
-	get_node("UI/RightPanel/Score").setScore(score)
-	
+	setScore(score + score_diff)
+
+func setScore(_score):
+	score = _score;
+	get_node("UI/RightPanel/Score").setScore(score)	
+
 func _on_level_finished():
 	goToNextLevel();
 	

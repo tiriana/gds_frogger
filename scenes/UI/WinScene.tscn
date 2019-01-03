@@ -56,4 +56,6 @@ margin_top = 936.0
 margin_right = 1916.0
 margin_bottom = 986.0
 
+[connection signal="pressed" from="Play again" to="." method="_on_Play_again_pressed"]
+
 

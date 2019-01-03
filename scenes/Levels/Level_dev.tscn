@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/Levels/Level_dev.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Board/TilesBoard.tscn" type="PackedScene" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://scenes/Homes/HomesBig.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Homes/HomesSmall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Logs/Log3.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/Cars/CarOrange.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Animals/Crock.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Cars/CarOrange.tscn" type="PackedScene" id=8]
 
 [node name="Level_dev" type="Node2D"]
 
@@ -250,7 +251,6 @@ speed = -100
 
 [node name="Water_1" type="Node2D" parent="." index="6"]
 
-editor/display_folded = true
 position = Vector2( 0, 468 )
 _sections_unfolded = [ "Transform" ]
 
@@ -278,45 +278,46 @@ speed = 100
 position = Vector2( 1268, 2 )
 speed = 100
 
-[node name="Log4" parent="Water_1" index="5" instance=ExtResource( 6 )]
-
-position = Vector2( 252, 0 )
-speed = 100
-
-[node name="Log10" parent="Water_1" index="6" instance=ExtResource( 6 )]
+[node name="Log10" parent="Water_1" index="5" instance=ExtResource( 6 )]
 
 position = Vector2( 1520, 2 )
 speed = 100
 
-[node name="Log5" parent="Water_1" index="7" instance=ExtResource( 6 )]
+[node name="Log5" parent="Water_1" index="6" instance=ExtResource( 6 )]
 
 position = Vector2( 504, 0 )
 speed = 100
 
-[node name="Log8" parent="Water_1" index="8" instance=ExtResource( 6 )]
+[node name="Log8" parent="Water_1" index="7" instance=ExtResource( 6 )]
 
 position = Vector2( 1772, 2 )
 speed = 100
 
-[node name="Log6" parent="Water_1" index="9" instance=ExtResource( 6 )]
+[node name="Log6" parent="Water_1" index="8" instance=ExtResource( 6 )]
 
 position = Vector2( 756, 0 )
 speed = 100
 
-[node name="Log11" parent="Water_1" index="10" instance=ExtResource( 6 )]
+[node name="Log11" parent="Water_1" index="9" instance=ExtResource( 6 )]
 
 position = Vector2( 2024, 2 )
 speed = 100
 
-[node name="Log7" parent="Water_1" index="11" instance=ExtResource( 6 )]
+[node name="Log7" parent="Water_1" index="10" instance=ExtResource( 6 )]
 
 position = Vector2( 1008, 0 )
 speed = 100
 
-[node name="Log12" parent="Water_1" index="12" instance=ExtResource( 6 )]
+[node name="Log12" parent="Water_1" index="11" instance=ExtResource( 6 )]
 
 position = Vector2( 2276, 2 )
 speed = 100
+
+[node name="Crock" parent="Water_1" index="12" instance=ExtResource( 7 )]
+
+position = Vector2( 168, 0 )
+speed = 100
+eatingProbability = 5.0
 
 [node name="GrassMiddle" type="Node2D" parent="." index="7"]
 
@@ -329,26 +330,26 @@ editor/display_folded = true
 position = Vector2( 0, 612 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="CarOrange" parent="Road_5" index="0" instance=ExtResource( 7 )]
+[node name="CarOrange" parent="Road_5" index="0" instance=ExtResource( 8 )]
 
 speed = 700
 
-[node name="CarOrange2" parent="Road_5" index="1" instance=ExtResource( 7 )]
+[node name="CarOrange2" parent="Road_5" index="1" instance=ExtResource( 8 )]
 
 position = Vector2( 1272, 0 )
 speed = 700
 
-[node name="CarOrange3" parent="Road_5" index="2" instance=ExtResource( 7 )]
+[node name="CarOrange3" parent="Road_5" index="2" instance=ExtResource( 8 )]
 
 position = Vector2( 2268, 0 )
 speed = 700
 
-[node name="CarOrange5" parent="Road_5" index="3" instance=ExtResource( 7 )]
+[node name="CarOrange5" parent="Road_5" index="3" instance=ExtResource( 8 )]
 
 position = Vector2( 2268, 0 )
 speed = 700
 
-[node name="CarOrange4" parent="Road_5" index="4" instance=ExtResource( 7 )]
+[node name="CarOrange4" parent="Road_5" index="4" instance=ExtResource( 8 )]
 
 position = Vector2( -624, 0 )
 speed = 700
@@ -359,16 +360,16 @@ editor/display_folded = true
 position = Vector2( 1000, 684 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="CarOrange" parent="Road_4" index="0" instance=ExtResource( 7 )]
+[node name="CarOrange" parent="Road_4" index="0" instance=ExtResource( 8 )]
 
 speed = -600
 
-[node name="CarOrange2" parent="Road_4" index="1" instance=ExtResource( 7 )]
+[node name="CarOrange2" parent="Road_4" index="1" instance=ExtResource( 8 )]
 
 position = Vector2( 1028, 0 )
 speed = -600
 
-[node name="CarOrange3" parent="Road_4" index="2" instance=ExtResource( 7 )]
+[node name="CarOrange3" parent="Road_4" index="2" instance=ExtResource( 8 )]
 
 position = Vector2( -1180, 0 )
 speed = -600
@@ -379,16 +380,16 @@ editor/display_folded = true
 position = Vector2( 0, 756 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="CarOrange" parent="Road_3" index="0" instance=ExtResource( 7 )]
+[node name="CarOrange" parent="Road_3" index="0" instance=ExtResource( 8 )]
 
 speed = 500
 
-[node name="CarOrange2" parent="Road_3" index="1" instance=ExtResource( 7 )]
+[node name="CarOrange2" parent="Road_3" index="1" instance=ExtResource( 8 )]
 
 position = Vector2( 936, 0 )
 speed = 500
 
-[node name="CarOrange4" parent="Road_3" index="2" instance=ExtResource( 7 )]
+[node name="CarOrange4" parent="Road_3" index="2" instance=ExtResource( 8 )]
 
 position = Vector2( 1776, 0 )
 speed = 500
@@ -399,17 +400,17 @@ editor/display_folded = true
 position = Vector2( 0, 828 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="CarOrange" parent="Road_2" index="0" instance=ExtResource( 7 )]
+[node name="CarOrange" parent="Road_2" index="0" instance=ExtResource( 8 )]
 
 position = Vector2( 1176, 0 )
 speed = -300
 
-[node name="CarOrange3" parent="Road_2" index="1" instance=ExtResource( 7 )]
+[node name="CarOrange3" parent="Road_2" index="1" instance=ExtResource( 8 )]
 
 position = Vector2( 528, 0 )
 speed = -300
 
-[node name="CarOrange5" parent="Road_2" index="2" instance=ExtResource( 7 )]
+[node name="CarOrange5" parent="Road_2" index="2" instance=ExtResource( 8 )]
 
 position = Vector2( -672, 0 )
 speed = -300
@@ -420,21 +421,21 @@ editor/display_folded = true
 position = Vector2( 0, 900 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="CarOrange" parent="Road_1" index="0" instance=ExtResource( 7 )]
+[node name="CarOrange" parent="Road_1" index="0" instance=ExtResource( 8 )]
 
 speed = 300
 
-[node name="CarOrange3" parent="Road_1" index="1" instance=ExtResource( 7 )]
+[node name="CarOrange3" parent="Road_1" index="1" instance=ExtResource( 8 )]
 
 position = Vector2( 900, 0 )
 speed = 300
 
-[node name="CarOrange5" parent="Road_1" index="2" instance=ExtResource( 7 )]
+[node name="CarOrange5" parent="Road_1" index="2" instance=ExtResource( 8 )]
 
 position = Vector2( 1608, 0 )
 speed = 300
 
-[node name="CarOrange7" parent="Road_1" index="3" instance=ExtResource( 7 )]
+[node name="CarOrange7" parent="Road_1" index="3" instance=ExtResource( 8 )]
 
 position = Vector2( 2436, 0 )
 speed = 300

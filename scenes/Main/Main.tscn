@@ -1,26 +1,27 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/Main/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Levels/Level_simple.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/Board/TilesBoard.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Frog/Frog.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/Board/TileSet.tres" type="TileSet" id=5]
-[ext_resource path="res://scenes/UI/Score.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/UI/Lives.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/UI/Timer.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/UI/GameOver.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/UI/WinScene.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/UI/MainMenu.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/Levels/Level_dev.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Board/TilesBoard.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Frog/Frog.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Board/TileSet.tres" type="TileSet" id=6]
+[ext_resource path="res://scenes/UI/Score.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/UI/Lives.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/UI/Timer.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/UI/GameOver.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/UI/WinScene.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/UI/MainMenu.tscn" type="PackedScene" id=12]
 
 [node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Transform" ]
-LevelScenes = [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ) ]
+LevelScenes = [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 3 ) ]
 totalLives = 5
 secondsLeft = 300
 
-[node name="Board" parent="." index="0" instance=ExtResource( 3 )]
+[node name="Board" parent="." index="0" instance=ExtResource( 4 )]
 
 _sections_unfolded = [ "Transform", "Z Index" ]
 
@@ -29,7 +30,7 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 position = Vector2( 792, 1008 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Frog" parent="." index="2" instance=ExtResource( 4 )]
+[node name="Frog" parent="." index="2" instance=ExtResource( 5 )]
 
 position = Vector2( -216, 144 )
 z_index = 1
@@ -53,7 +54,7 @@ _sections_unfolded = [ "Z Index" ]
 
 modulate = Color( 0.535156, 0.334473, 0.334473, 1 )
 mode = 0
-tile_set = ExtResource( 5 )
+tile_set = ExtResource( 6 )
 cell_size = Vector2( 72, 72 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -75,27 +76,27 @@ _sections_unfolded = [ "Cell", "Visibility" ]
 
 position = Vector2( 1512, 0 )
 
-[node name="Score" parent="UI/RightPanel" index="0" instance=ExtResource( 6 )]
+[node name="Score" parent="UI/RightPanel" index="0" instance=ExtResource( 7 )]
 
 position = Vector2( 0, 72 )
 
-[node name="Lives" parent="UI/RightPanel" index="1" instance=ExtResource( 7 )]
+[node name="Lives" parent="UI/RightPanel" index="1" instance=ExtResource( 8 )]
 
 position = Vector2( 0, 272 )
 
-[node name="Timer" parent="UI/RightPanel" index="2" instance=ExtResource( 8 )]
+[node name="Timer" parent="UI/RightPanel" index="2" instance=ExtResource( 9 )]
 
 position = Vector2( 0, 472 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GameOver" parent="UI" index="2" instance=ExtResource( 9 )]
+[node name="GameOver" parent="UI" index="2" instance=ExtResource( 10 )]
 
 visible = false
 
-[node name="WinScene" parent="UI" index="3" instance=ExtResource( 10 )]
+[node name="WinScene" parent="UI" index="3" instance=ExtResource( 11 )]
 
 visible = false
 
-[node name="MainMenu" parent="UI" index="4" instance=ExtResource( 11 )]
+[node name="MainMenu" parent="UI" index="4" instance=ExtResource( 12 )]
 
 

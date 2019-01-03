@@ -21,6 +21,7 @@ _sections_unfolded = [ "Transform" ]
 
 frames = SubResource( 1 )
 animation = "default"
+frame = 2
 playing = true
 _sections_unfolded = [ "Transform" ]
 

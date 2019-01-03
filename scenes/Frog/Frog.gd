@@ -15,6 +15,7 @@ var isAtHome
 
 var carriers = []
 var danger = []
+var lethalDanger = []
 var lastHome;
 
 var directions = {
@@ -109,7 +110,7 @@ func updateState(delta):
 	else:
 		timeInDanger = 0
 	
-	if carriers.size() > 0:
+	if carriers.size() > 0 and lethalDanger.size() == 0:
 		timeInDanger = 0
 	
 	if isAtHome:
@@ -169,6 +170,9 @@ func _on_Frog_body_entered(body):
 	if body.isDanger:
 		danger.push_back(body)
 	
+	if body.isLethal:
+		lethalDanger.push_back(body)
+	
 	if body.isHome:
 		isAtHome = true
 		lastHome = body.get_node("../");
@@ -177,6 +181,10 @@ func _on_Frog_body_exited(body):
 	if body.isDanger:
 		while(danger.has(body)):
 			danger.remove(danger.find(body));
+			
+	if body.isLethal:
+		while(lethalDanger.has(body)):
+			lethalDanger.remove(lethalDanger.find(body));
 		
 	if body.isCarrying:
 		while(carriers.has(body)):

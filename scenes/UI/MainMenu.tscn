@@ -7,7 +7,7 @@
 [ext_resource path="res://scenes/UI/BaseButton.gd" type="Script" id=5]
 [ext_resource path="res://scenes/UI/QuitButton.tscn" type="PackedScene" id=6]
 
-[node name="MainMenu" type="Node2D" index="0"]
+[node name="MainMenu" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
