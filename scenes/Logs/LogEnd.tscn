@@ -13,7 +13,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="LogEnd" type="Node2D"]
+[node name="LogEnd" type="Node2D" index="0"]
 
 _sections_unfolded = [ "Transform" ]
 
@@ -21,7 +21,7 @@ _sections_unfolded = [ "Transform" ]
 
 frames = SubResource( 1 )
 animation = "default"
-frame = 2
+frame = 1
 playing = true
 _sections_unfolded = [ "Transform" ]
 

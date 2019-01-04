@@ -32,7 +32,7 @@ custom_solver_bias = 0.0
 radius = 34.8857
 height = 0.0
 
-[node name="Crock" type="Node2D"]
+[node name="Crock" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -43,6 +43,7 @@ eatingProbability = 0.0
 
 frames = SubResource( 1 )
 animation = "swim"
+frame = 1
 playing = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="1"]
