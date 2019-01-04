@@ -74,6 +74,9 @@ func startLevel(levelNumber):
 	if (currentLevelNumber >= LevelScenes.size()):
 		return
 	currentLevelNumber = levelNumber;
+	
+	print("currentLevelNumber ", currentLevelNumber);
+	
 	var level = LevelScenes[currentLevelNumber].instance()
 	remove_child(currentLevel)
 	currentLevel = level;
@@ -94,14 +97,12 @@ func getTimer():
 
 func goToWinScene():
 	get_node("UI/WinScene").show()
-	print("THIS IS WIN SCENE")
 	getTimer().stop()
 	$Frog.isInteractive = false
 	$Frog.visible = false
 	
 func goToGameOver():
 	get_node("UI/GameOver").show()
-	print("THIS IS GAME OVER SCENE")
 	getTimer().stop()
 	$Frog.isInteractive = false
 	$Frog.visible = false

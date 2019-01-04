@@ -126,7 +126,6 @@ func emit_signals_if_needed():
 		return win()
 
 func die():
-	print("frog dies")
 	hide()
 	emit_signal("died")
 

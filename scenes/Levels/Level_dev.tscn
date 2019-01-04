@@ -85,7 +85,6 @@ speed = 100
 
 [node name="Water_4" type="Node2D" parent="." index="3"]
 
-editor/display_folded = true
 position = Vector2( 0, 252 )
 _sections_unfolded = [ "Transform" ]
 
@@ -95,7 +94,8 @@ speed = -100
 
 [node name="Log6" parent="Water_4" index="1" instance=ExtResource( 6 )]
 
-position = Vector2( -2248, 0 )
+position = Vector2( -1188.97, 0 )
+scale = Vector2( -2.1875, 1 )
 speed = -100
 
 [node name="Log4" parent="Water_4" index="2" instance=ExtResource( 6 )]
@@ -273,49 +273,50 @@ speed = 100
 position = Vector2( -750, 6 )
 speed = 100
 
-[node name="Log9" parent="Water_1" index="4" instance=ExtResource( 6 )]
-
-position = Vector2( 1268, 2 )
-speed = 100
-
-[node name="Log10" parent="Water_1" index="5" instance=ExtResource( 6 )]
+[node name="Log10" parent="Water_1" index="4" instance=ExtResource( 6 )]
 
 position = Vector2( 1520, 2 )
 speed = 100
 
-[node name="Log5" parent="Water_1" index="6" instance=ExtResource( 6 )]
+[node name="Log5" parent="Water_1" index="5" instance=ExtResource( 6 )]
 
 position = Vector2( 504, 0 )
 speed = 100
 
-[node name="Log8" parent="Water_1" index="7" instance=ExtResource( 6 )]
+[node name="Log8" parent="Water_1" index="6" instance=ExtResource( 6 )]
 
 position = Vector2( 1772, 2 )
 speed = 100
 
-[node name="Log6" parent="Water_1" index="8" instance=ExtResource( 6 )]
+[node name="Log6" parent="Water_1" index="7" instance=ExtResource( 6 )]
 
 position = Vector2( 756, 0 )
 speed = 100
 
-[node name="Log11" parent="Water_1" index="9" instance=ExtResource( 6 )]
+[node name="Log11" parent="Water_1" index="8" instance=ExtResource( 6 )]
 
 position = Vector2( 2024, 2 )
 speed = 100
 
-[node name="Log7" parent="Water_1" index="10" instance=ExtResource( 6 )]
+[node name="Log7" parent="Water_1" index="9" instance=ExtResource( 6 )]
 
 position = Vector2( 1008, 0 )
 speed = 100
 
-[node name="Log12" parent="Water_1" index="11" instance=ExtResource( 6 )]
+[node name="Log12" parent="Water_1" index="10" instance=ExtResource( 6 )]
 
 position = Vector2( 2276, 2 )
 speed = 100
 
-[node name="Crock" parent="Water_1" index="12" instance=ExtResource( 7 )]
+[node name="Crock" parent="Water_1" index="11" instance=ExtResource( 7 )]
 
 position = Vector2( 168, 0 )
+speed = 100
+eatingProbability = 5.0
+
+[node name="Crock2" parent="Water_1" index="12" instance=ExtResource( 7 )]
+
+position = Vector2( 1200, 0 )
 speed = 100
 eatingProbability = 5.0
 
