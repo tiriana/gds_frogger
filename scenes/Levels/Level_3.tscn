@@ -1,0 +1,410 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/Levels/Level.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Board/TilesBoard.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Levels/Homes.gd" type="Script" id=3]
+[ext_resource path="res://scenes/Homes/HomesBig.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Homes/HomesSmall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Logs/Log3.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Animals/Crock.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Cars/CarOrange.tscn" type="PackedScene" id=8]
+
+[node name="Level_3" type="Node2D"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+checkpointPoints = 10
+finishedPoints = 100
+time = 90
+
+[node name="Board" parent="." index="0" instance=ExtResource( 2 )]
+
+visible = false
+show_behind_parent = true
+z_index = -100
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+
+[node name="Homes" type="Node2D" parent="." index="1"]
+
+position = Vector2( 0, 108 )
+script = ExtResource( 3 )
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+
+[node name="HomesBig" parent="Homes" index="0" instance=ExtResource( 4 )]
+
+visible = false
+position = Vector2( 180, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="HomesSmall" parent="Homes" index="1" instance=ExtResource( 5 )]
+
+position = Vector2( 468, 0 )
+_sections_unfolded = [ "Transform" ]
+pointsNormal = 1
+pointsWithFly = 2
+
+[node name="HomesSmall5" parent="Homes" index="2" instance=ExtResource( 5 )]
+
+position = Vector2( 180, 0 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+pointsNormal = 1
+pointsWithFly = 2
+
+[node name="HomesSmall2" parent="Homes" index="3" instance=ExtResource( 5 )]
+
+position = Vector2( 756, 0 )
+_sections_unfolded = [ "Transform" ]
+pointsNormal = 1
+pointsWithFly = 2
+
+[node name="HomesSmall3" parent="Homes" index="4" instance=ExtResource( 5 )]
+
+position = Vector2( 1044, 0 )
+_sections_unfolded = [ "Transform" ]
+pointsNormal = 1
+pointsWithFly = 2
+
+[node name="HomesSmall4" parent="Homes" index="5" instance=ExtResource( 5 )]
+
+position = Vector2( 1332, 0 )
+_sections_unfolded = [ "Transform" ]
+pointsNormal = 1
+pointsWithFly = 2
+
+[node name="Water_5" type="Node2D" parent="." index="2"]
+
+position = Vector2( 0, 180 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Log3" parent="Water_5" index="0" instance=ExtResource( 6 )]
+
+position = Vector2( 50, 0 )
+speed = 200
+maxX = 1980
+minX = -1980
+
+[node name="Log7" parent="Water_5" index="1" instance=ExtResource( 6 )]
+
+position = Vector2( 1150, 0 )
+speed = 200
+maxX = 1980
+minX = -1980
+
+[node name="Crock" parent="Water_5" index="2" instance=ExtResource( 7 )]
+
+position = Vector2( 550, 0 )
+speed = 200
+maxX = 1980
+minX = -1980
+eatingProbability = 5.0
+
+[node name="Crock2" parent="Water_5" index="3" instance=ExtResource( 7 )]
+
+position = Vector2( 1650, 0 )
+speed = 200
+maxX = 1980
+minX = -1980
+eatingProbability = 5.0
+
+[node name="Water_4" type="Node2D" parent="." index="3"]
+
+position = Vector2( 0, 252 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Crock" parent="Water_4" index="0" instance=ExtResource( 7 )]
+
+position = Vector2( 50, 0 )
+speed = -350
+maxX = 1980
+minX = -1980
+eatingProbability = 5.0
+
+[node name="Crock2" parent="Water_4" index="1" instance=ExtResource( 7 )]
+
+position = Vector2( 550, 0 )
+speed = -350
+maxX = 1980
+minX = -1980
+eatingProbability = 5.0
+
+[node name="Crock3" parent="Water_4" index="2" instance=ExtResource( 7 )]
+
+position = Vector2( 1050, 0 )
+speed = -350
+maxX = 1980
+minX = -1980
+eatingProbability = 5.0
+
+[node name="Crock4" parent="Water_4" index="3" instance=ExtResource( 7 )]
+
+position = Vector2( 1550, 0 )
+speed = -350
+maxX = 1980
+minX = -1980
+eatingProbability = 5.0
+
+[node name="Water_3" type="Node2D" parent="." index="4"]
+
+position = Vector2( 0, 324 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Log5" parent="Water_3" index="0" instance=ExtResource( 6 )]
+
+position = Vector2( 500, 0 )
+speed = 500
+maxX = 1980
+minX = -1980
+
+[node name="Log6" parent="Water_3" index="1" instance=ExtResource( 6 )]
+
+position = Vector2( 680, 0 )
+speed = 500
+maxX = 1980
+minX = -1980
+
+[node name="Log7" parent="." index="5" instance=ExtResource( 6 )]
+
+position = Vector2( 860, 324 )
+speed = 500
+maxX = 1980
+minX = -1980
+
+[node name="Water_2" type="Node2D" parent="." index="6"]
+
+position = Vector2( 0, 396 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Log3" parent="Water_2" index="0" instance=ExtResource( 6 )]
+
+position = Vector2( -150, 0 )
+speed = 150
+maxX = 1980
+minX = -1980
+
+[node name="Log4" parent="Water_2" index="1" instance=ExtResource( 6 )]
+
+position = Vector2( 350, 0 )
+speed = 150
+maxX = 1980
+minX = -1980
+
+[node name="Log5" parent="Water_2" index="2" instance=ExtResource( 6 )]
+
+position = Vector2( 850, 0 )
+speed = 150
+maxX = 1980
+minX = -1980
+
+[node name="Log6" parent="Water_2" index="3" instance=ExtResource( 6 )]
+
+position = Vector2( 1350, 0 )
+speed = 150
+maxX = 1980
+minX = -1980
+
+[node name="Log7" parent="Water_2" index="4" instance=ExtResource( 6 )]
+
+position = Vector2( 1850, 0 )
+speed = 150
+maxX = 1980
+minX = -1980
+
+[node name="Water_1" type="Node2D" parent="." index="7"]
+
+position = Vector2( 0, 468 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Crock" parent="Water_1" index="0" instance=ExtResource( 7 )]
+
+position = Vector2( 0, 1.85065 )
+speed = -200
+maxX = 1980
+minX = -1980
+eatingProbability = 5.0
+
+[node name="Crock2" parent="Water_1" index="1" instance=ExtResource( 7 )]
+
+position = Vector2( 450, 0 )
+speed = -200
+maxX = 1980
+minX = -1980
+eatingProbability = 5.0
+
+[node name="Crock3" parent="Water_1" index="2" instance=ExtResource( 7 )]
+
+position = Vector2( 900, 0 )
+speed = -200
+maxX = 1980
+minX = -1980
+eatingProbability = 5.0
+
+[node name="Crock4" parent="Water_1" index="3" instance=ExtResource( 7 )]
+
+position = Vector2( 1350, 0 )
+speed = -200
+maxX = 1980
+minX = -1980
+eatingProbability = 5.0
+
+[node name="Crock5" parent="Water_1" index="4" instance=ExtResource( 7 )]
+
+position = Vector2( 1800, 0 )
+speed = -200
+maxX = 1980
+minX = -1980
+eatingProbability = 5.0
+
+[node name="GrassMiddle" type="Node2D" parent="." index="8"]
+
+position = Vector2( 0, 540 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Road_5" type="Node2D" parent="." index="9"]
+
+position = Vector2( 0, 612 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CarOrange" parent="Road_5" index="0" instance=ExtResource( 8 )]
+
+position = Vector2( -60, 0 )
+speed = -620
+maxX = 1980
+minX = -1980
+
+[node name="CarOrange2" parent="Road_5" index="1" instance=ExtResource( 8 )]
+
+position = Vector2( 120, 0 )
+speed = -620
+maxX = 1980
+minX = -1980
+
+[node name="CarOrange5" parent="Road_5" index="2" instance=ExtResource( 8 )]
+
+position = Vector2( 1220, 0 )
+speed = -620
+maxX = 1980
+minX = -1980
+
+[node name="CarOrange6" parent="Road_5" index="3" instance=ExtResource( 8 )]
+
+position = Vector2( 1400, 0 )
+speed = -620
+maxX = 1980
+minX = -1980
+
+[node name="Road_4" type="Node2D" parent="." index="10"]
+
+position = Vector2( 1000, 684 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CarOrange" parent="Road_4" index="0" instance=ExtResource( 8 )]
+
+speed = -400
+maxX = 1980
+minX = -1980
+
+[node name="CarOrange2" parent="Road_4" index="1" instance=ExtResource( 8 )]
+
+position = Vector2( 800, 0 )
+speed = -400
+maxX = 1980
+minX = -1980
+
+[node name="CarOrange3" parent="Road_4" index="2" instance=ExtResource( 8 )]
+
+position = Vector2( -1200, 0 )
+speed = -400
+maxX = 1980
+minX = -1980
+
+[node name="Road_3" type="Node2D" parent="." index="11"]
+
+position = Vector2( 0, 756 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CarOrange" parent="Road_3" index="0" instance=ExtResource( 8 )]
+
+speed = 800
+maxX = 1980
+minX = -1980
+
+[node name="CarOrange2" parent="Road_3" index="1" instance=ExtResource( 8 )]
+
+position = Vector2( 500, 0 )
+speed = 800
+maxX = 1980
+minX = -1980
+
+[node name="Road_2" type="Node2D" parent="." index="12"]
+
+position = Vector2( 0, 828 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CarOrange" parent="Road_2" index="0" instance=ExtResource( 8 )]
+
+position = Vector2( 1050, 0 )
+speed = -450
+maxX = 1980
+minX = -1980
+
+[node name="CarOrange3" parent="Road_2" index="1" instance=ExtResource( 8 )]
+
+position = Vector2( 450, 0 )
+speed = -450
+maxX = 1980
+minX = -1980
+
+[node name="CarOrange5" parent="Road_2" index="2" instance=ExtResource( 8 )]
+
+position = Vector2( -152.051, 0 )
+speed = -450
+maxX = 1980
+minX = -1980
+
+[node name="CarOrange6" parent="Road_2" index="3" instance=ExtResource( 8 )]
+
+position = Vector2( 1652.79, 0 )
+speed = -450
+maxX = 1980
+minX = -1980
+
+[node name="Road_1" type="Node2D" parent="." index="13"]
+
+position = Vector2( 0, 900 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CarOrange" parent="Road_1" index="0" instance=ExtResource( 8 )]
+
+speed = 300
+maxX = 1980
+minX = -1980
+
+[node name="CarOrange3" parent="Road_1" index="1" instance=ExtResource( 8 )]
+
+position = Vector2( 460, 0 )
+speed = 300
+maxX = 1980
+minX = -1980
+
+[node name="CarOrange5" parent="Road_1" index="2" instance=ExtResource( 8 )]
+
+position = Vector2( 920, 0 )
+speed = 300
+maxX = 1980
+minX = -1980
+
+[node name="CarOrange7" parent="Road_1" index="3" instance=ExtResource( 8 )]
+
+position = Vector2( 1380, 0 )
+speed = 300
+maxX = 1980
+minX = -1980
+
+[node name="CarOrange8" parent="Road_1" index="4" instance=ExtResource( 8 )]
+
+position = Vector2( 1840, 0 )
+speed = 300
+maxX = 1980
+minX = -1980
+
+

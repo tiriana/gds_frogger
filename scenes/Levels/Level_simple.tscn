@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://scenes/Levels/Level_dev.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Levels/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Board/TilesBoard.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Levels/Homes.gd" type="Script" id=3]
 [ext_resource path="res://scenes/Homes/HomesSmall.tscn" type="PackedScene" id=4]
@@ -8,10 +8,13 @@
 [ext_resource path="res://scenes/Animals/Crock.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/Cars/CarOrange.tscn" type="PackedScene" id=7]
 
-[node name="Level_simple" type="Node2D" index="0"]
+[node name="Level_simple" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
+checkpointPoints = 10
+finishedPoints = 100
+time = 90
 
 [node name="Board" parent="." index="0" instance=ExtResource( 2 )]
 
@@ -29,6 +32,8 @@ _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 [node name="HomesSmall" parent="Homes" index="0" instance=ExtResource( 4 )]
 
 position = Vector2( 468, 0 )
+pointsNormal = 1
+pointsWithFly = 2
 
 [node name="Water_5" type="Node2D" parent="." index="2"]
 
@@ -99,6 +104,8 @@ speed = -5
 
 position = Vector2( 804, 0 )
 speed = -5
+maxX = 1980
+minX = -1980
 eatingProbability = 0.8
 
 [node name="GrassMiddle" type="Node2D" parent="." index="7"]
@@ -115,6 +122,8 @@ _sections_unfolded = [ "Transform" ]
 
 position = Vector2( -624, 0 )
 speed = 700
+maxX = 1980
+minX = -1980
 
 [node name="Road_4" type="Node2D" parent="." index="9"]
 
@@ -136,6 +145,8 @@ _sections_unfolded = [ "Transform" ]
 
 position = Vector2( -672, 0 )
 speed = -300
+maxX = 1980
+minX = -1980
 
 [node name="Road_1" type="Node2D" parent="." index="12"]
 

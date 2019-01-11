@@ -11,11 +11,13 @@
 custom_solver_bias = 0.0
 extents = Vector2( 96, 36 )
 
-[node name="Log3" type="Node2D" index="0"]
+[node name="Log3" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 speed = 0
+maxX = 1980
+minX = -1980
 
 [node name="First" parent="." index="0" instance=ExtResource( 2 )]
 

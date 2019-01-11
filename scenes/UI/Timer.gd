@@ -1,4 +1,5 @@
 extends Node2D
+signal timeout;
 
 export (int) var totalSeconds = 300
 var secondsLeft
@@ -9,7 +10,7 @@ func setSecondsTotal(_seconds):
 	
 func setSecondsLeft(_seconds):
 	secondsLeft = _seconds
-	$Label.setText("Time: " + str(int(secondsLeft)));
+	$Label.text = "Time: " + str(int(secondsLeft))
 	
 func start():
 	isRunnig = true
@@ -25,4 +26,7 @@ func _process(delta):
 	if (!isRunnig):
 		return;
 	setSecondsLeft(secondsLeft - delta)
+	if secondsLeft <= 0:
+		emit_signal("timeout");
+		stop();
 	pass

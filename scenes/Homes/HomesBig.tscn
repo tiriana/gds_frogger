@@ -19,9 +19,11 @@ animations = [ {
 custom_solver_bias = 0.0
 extents = Vector2( 36, 36 )
 
-[node name="HomesBig" type="Node2D"]
+[node name="HomesBig" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
+pointsNormal = 1
+pointsWithFly = 2
 
 [node name="Backround" type="AnimatedSprite" parent="." index="0"]
 

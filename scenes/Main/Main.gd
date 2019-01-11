@@ -45,6 +45,7 @@ func _ready():
 	get_node("UI/MainMenu").connect("start", self, "startGame")
 	get_node("UI/GameOver").connect("try_again", self, "restartGame")
 	get_node("UI/WinScene").connect("play_again", self, "restartGame")
+	getTimer().connect("timeout", self, "goToGameOver")
 
 func reset():
 	pass
@@ -64,7 +65,7 @@ func prepareGame():
 
 func startGame():
 	getTimer().start();
-	startLevel(1);
+	startLevel(0);
 	$Frog.isInteractive = true;
 	get_node("UI/MainMenu").visible = false;
 	get_node("UI/GameOver").visible = false;
@@ -75,8 +76,6 @@ func startLevel(levelNumber):
 		return
 	currentLevelNumber = levelNumber;
 	
-	print("currentLevelNumber ", currentLevelNumber);
-	
 	var level = LevelScenes[currentLevelNumber].instance()
 	remove_child(currentLevel)
 	currentLevel = level;
@@ -84,12 +83,12 @@ func startLevel(levelNumber):
 	
 	level.connect("finished", self, "_on_level_finished");
 	level.connect("score_change", self, "_on_score_change");
+	getTimer().setSecondsLeft(level.time)
 	
 func goToNextLevel():
 	if (currentLevelNumber == LevelScenes.size() - 1):
 		goToWinScene()
 		return;
-	_on_score_change(100);
 	startLevel(currentLevelNumber + 1);
 	
 func getTimer():
@@ -107,11 +106,12 @@ func goToGameOver():
 	$Frog.isInteractive = false
 	$Frog.visible = false
 	
-func _on_score_change(score_diff):
-	setScore(score + score_diff)
+func _on_score_change(score_diff, for_every_second):
+	print ("_on_score_change ", score_diff, " ", for_every_second)
+	setScore(score + score_diff + for_every_second * getTimer().secondsLeft)
 
 func setScore(_score):
-	score = _score;
+	score = round(_score);
 	get_node("UI/RightPanel/Score").setScore(score)	
 
 func _on_level_finished():
@@ -132,4 +132,6 @@ func _on_frog_won():
 	_spawnFrog()
 
 func _process(delta):
+	if $Frog.isInteractive and currentLevel:
+		currentLevel.onFrogProgress($Start.position.y - $Frog.position.y)
 	pass

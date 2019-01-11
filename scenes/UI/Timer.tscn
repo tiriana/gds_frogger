@@ -10,4 +10,6 @@ totalSeconds = 300
 
 [node name="Label" parent="." index="0" instance=ExtResource( 2 )]
 
+text = "Time"
+
 

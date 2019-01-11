@@ -1,7 +1,7 @@
-extends Node2D
+extends Label
 
 func setText(text):
-	$Label.text = text;
+	text = text;
 
 func _ready():
 	pass
