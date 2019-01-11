@@ -42,6 +42,7 @@ func _ready():
 	prepareGame();
 	$Frog.isInteractive = false
 	
+	get_node("UI/MainMenu").enterScene();
 	get_node("UI/MainMenu").connect("start", self, "startGame")
 	get_node("UI/GameOver").connect("try_again", self, "restartGame")
 	get_node("UI/WinScene").connect("play_again", self, "restartGame")
@@ -65,11 +66,12 @@ func prepareGame():
 
 func startGame():
 	getTimer().start();
+	startMusic();
 	startLevel(0);
 	$Frog.isInteractive = true;
-	get_node("UI/MainMenu").visible = false;
-	get_node("UI/GameOver").visible = false;
-	get_node("UI/WinScene").visible = false;
+	get_node("UI/MainMenu").exitScene();
+	get_node("UI/GameOver").exitScene();
+	get_node("UI/WinScene").exitScene();
 	
 func startLevel(levelNumber):
 	if (currentLevelNumber >= LevelScenes.size()):
@@ -90,18 +92,35 @@ func goToNextLevel():
 		goToWinScene()
 		return;
 	startLevel(currentLevelNumber + 1);
+	$levelFinishedMusic.play();
 	
 func getTimer():
 	return get_node("UI/RightPanel/Timer")
 
 func goToWinScene():
-	get_node("UI/WinScene").show()
+	if get_node("UI/WinScene").visible:
+		return;
+	stopMusic();
+	get_node("UI/WinScene").enterScene()
 	getTimer().stop()
 	$Frog.isInteractive = false
 	$Frog.visible = false
 	
+func startMusic():
+	playMusic();
+	$levelMusic.connect("finished", self, "playMusic")
+	
+func playMusic():
+	$levelMusic.play();
+	
+func stopMusic():
+	$levelMusic.stop();
+	
 func goToGameOver():
-	get_node("UI/GameOver").show()
+	if get_node("UI/GameOver").visible:
+		return;
+	stopMusic();
+	get_node("UI/GameOver").enterScene()
 	getTimer().stop()
 	$Frog.isInteractive = false
 	$Frog.visible = false

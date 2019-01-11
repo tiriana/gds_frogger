@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/Homes/HomesSmall.gd" type="Script" id=1]
 [ext_resource path="res://art/tiles/Frogger_base.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Terrian.gd" type="Script" id=3]
 [ext_resource path="res://scenes/Frog/Frog.tscn" type="PackedScene" id=4]
+[ext_resource path="res://art/sounds/4_1_Home.wav" type="AudioStream" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -22,6 +23,8 @@ extents = Vector2( 36, 36 )
 [node name="HomesSmall" type="Node2D"]
 
 script = ExtResource( 1 )
+pointsNormal = 1
+pointsWithFly = 2
 
 [node name="Backround" type="AnimatedSprite" parent="." index="0"]
 
@@ -58,5 +61,14 @@ collision_layer = 0
 collision_mask = 0
 script = null
 _sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="filledSound" type="AudioStreamPlayer" parent="." index="3"]
+
+stream = ExtResource( 5 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 

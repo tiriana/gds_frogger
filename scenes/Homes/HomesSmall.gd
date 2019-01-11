@@ -12,6 +12,7 @@ func markAsFull():
 	$StaticBody2D.isDanger = true
 	$StaticBody2D.isHome = false
 	emit_signal("filled")
+	$filledSound.play()
 	
 func _ready():
 	# Called when the node is added to the scene for the first time.

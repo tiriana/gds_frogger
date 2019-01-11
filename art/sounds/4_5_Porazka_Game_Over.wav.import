@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/4_5_Porazka_Game_Over.wav-a6ed872c928f39b70e2628aadbcd22c9.sample"
+
+[deps]
+
+source_file="res://art/sounds/4_5_Porazka_Game_Over.wav"
+dest_files=[ "res://.import/4_5_Porazka_Game_Over.wav-a6ed872c928f39b70e2628aadbcd22c9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

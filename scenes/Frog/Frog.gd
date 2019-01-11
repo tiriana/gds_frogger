@@ -126,6 +126,9 @@ func emit_signals_if_needed():
 		return win()
 
 func die():
+	if !isInteractive:
+		return
+	$deathSound.play();
 	hide()
 	emit_signal("died")
 
